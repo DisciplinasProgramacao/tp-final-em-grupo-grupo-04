@@ -1,17 +1,22 @@
 package business;
 
-public class FidelidadePreto implements Fidelizavel{
-	public static final double DESCONTO=0.1;
-	
+public class FidelidadePreto implements IFidelizavel {
+	public static final double DESCONTO = 0.1;
+	public static final int MIN_PEDIDOS = FidelidadePrata.MAX_PEDIDOS;
+	public static final int MIN_GASTOS = FidelidadePrata.MAX_GASTOS;
+	public static final int MAX_PEDIDOS = 50;
+	public static final int MAX_GASTOS = 600;
+
 	public FidelidadePreto(int pedidosUltimoMes, double gastoUltimoMes) {
 		this.validarFidelidade(pedidosUltimoMes, gastoUltimoMes);
 	}
-	
+
 	@Override
-	public Fidelizavel validarFidelidade(int pedidosUltimoMes, double gastoUltimoMes) {
-		if ((pedidosUltimoMes >= 10 && pedidosUltimoMes<50)|| (gastoUltimoMes >= 250 && gastoUltimoMes<600)) {
+	public IFidelizavel validarFidelidade(int pedidosUltimoMes, double gastoUltimoMes) {
+		if ((pedidosUltimoMes >= MIN_PEDIDOS && pedidosUltimoMes < MAX_PEDIDOS)
+				|| (gastoUltimoMes >= MIN_GASTOS && gastoUltimoMes < MAX_GASTOS)) {
 			return new FidelidadePreto(pedidosUltimoMes, gastoUltimoMes);
-		} else if((pedidosUltimoMes >= 4 && pedidosUltimoMes < 10) || (gastoUltimoMes >= 100 && gastoUltimoMes < 250)){
+		} else if (pedidosUltimoMes < MIN_PEDIDOS || gastoUltimoMes < MIN_GASTOS) {
 			return new FidelidadePrata(pedidosUltimoMes, gastoUltimoMes);
 		} else {
 			return new FidelidadeFnV(pedidosUltimoMes, gastoUltimoMes);

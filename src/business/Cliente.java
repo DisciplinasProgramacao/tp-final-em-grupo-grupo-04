@@ -1,11 +1,13 @@
 package business;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Cliente {
 	private String nome;
 	private String cpf;
-	private Fidelizavel nivelFidelidade;
-	//private Pedido[] pedidos;
-	//associar com a classe pedidos
+	private IFidelizavel nivelFidelidade;
+	private List<Integer> pedidos = new LinkedList<Integer>();
 	
 	/*GETTERS E SETTERS*/
 	public String getNome() {
@@ -25,11 +27,15 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public Fidelizavel getNivelFidelidade() {
+	public IFidelizavel getNivelFidelidade() {
 		return nivelFidelidade;
 	}
 
-	public void setNivelFidelidade(Fidelizavel nivelFidelidade) {
+	public void setNivelFidelidade(IFidelizavel nivelFidelidade) {
 		this.nivelFidelidade = nivelFidelidade;
+	}
+	
+	public void addPedido(int pedido) {
+		pedidos.add(pedido);
 	}
 }
