@@ -21,4 +21,9 @@ public class FidelidadePrata implements IFidelizavel {
 			return new FidelidadePreto(pedidosUltimoMes, gastoUltimoMes);
 		}
 	}
+	
+	@Override
+	public double getDesconto() {
+		return DESCONTO;
+	}
 }

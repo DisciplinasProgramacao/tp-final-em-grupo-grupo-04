@@ -1,4 +1,4 @@
-package Business;
+package business;
 
 public abstract class Bebida extends Produto{
 

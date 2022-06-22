@@ -18,4 +18,9 @@ public class FidelidadeFnV implements IFidelizavel {
 			return new FidelidadePreto(pedidosUltimoMes, gastoUltimoMes);
 		}
 	}
+
+	@Override
+	public double getDesconto() {
+		return DESCONTO;
+	}
 }

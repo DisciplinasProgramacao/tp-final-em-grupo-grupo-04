@@ -22,20 +22,45 @@ public class Cliente {
 		return cpf;
 	}
 
-	public void setCpf(String cpf) {
-		//validar cpf
-		this.cpf = cpf;
+	public void setCpf(String cpf) throws Cpf_Invalido{
+		if (cpf.length()==14) {
+			this.cpf = cpf;
+		} else {
+			throw new Cpf_Invalido(cpf);
+		}
+		
 	}
 
 	public IFidelizavel getNivelFidelidade() {
 		return nivelFidelidade;
+	}
+	
+	public double getDesconto() {
+		return nivelFidelidade.getDesconto();
 	}
 
 	public void setNivelFidelidade(IFidelizavel nivelFidelidade) {
 		this.nivelFidelidade = nivelFidelidade;
 	}
 	
-	public void addPedido(int pedido) {
+	public void fazerPedido(int pedido) {
 		pedidos.add(pedido);
+	}
+	
+	public void avaliarUltimoPedido(int avaliacao) {
+		//pega o ultimo pedido adicionado
+		//pedido.setAvaliacao(avaliacao);
+	}
+	
+	public void getAvaliacaoMedia() {
+		//preciso de pedidos pra fazer
+	}
+	
+	public String extratoResumido() {
+		return this.pedidos.toString();
+	}
+	
+	public String extratoDetalhado(int pedido) {
+		return  ""+pedido;//aqui é só chamar to string do pedido
 	}
 }
