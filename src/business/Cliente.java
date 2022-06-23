@@ -3,9 +3,10 @@ package business;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
+
 //implemente serializable para o arquivo
-public class Cliente implements Serializable{
-	//implementei seriaversion id
+public class Cliente implements Serializable {
+	// implementei seriaversion id
 	/**
 	 * 
 	 */
@@ -65,28 +66,36 @@ public class Cliente implements Serializable{
 	}
 
 	public void avaliarPedidoPorId(int id, int avaliacao) {
-		if (id==-1) {
-			//colocar exceção
-		}
-		else {
+		if (id == -1) {
+			// colocar excecao
+		} else {
 			this.pedidos.get(id).setAvaliacao(avaliacao);
 		}
-		
+
 	}
 
-	public void getAvaliacaoMedia() {
-		// preciso de pedidos pra fazer
+	public double getAvaliacaoMedia() {
+		double media = 0;
+		for (Pedido pedido : pedidos) {
+			media += pedido.getAvaliacao();
+		}
+		return media / pedidos.size();
 	}
 
 	public String extratoResumido() {
 		String extrato = "";
 		for (Pedido pedido : pedidos) {
-			extrato+=pedido.toString()+"/n";
+			extrato += pedido.toString() + "/n";
 		}
 		return extrato;
 	}
 
 	public String extratoDetalhado(int id) {
 		return pedidos.get(id).gerarNotaDeCompra();// aqui é só chamar to string do pedido
+	}
+
+	@Override
+	public String toString() {
+		return "Nome: " + nome + " CPF: " + cpf;
 	}
 }

@@ -2,16 +2,18 @@ package business;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 //implementei serializable 
 public class Pedido implements Serializable {
 
-/**
-	 * 
-	 */
+	/**
+		 * 
+		 */
 	private static final long serialVersionUID = 1L;
-	//atributos
+	// atributos
 	private static final int MAX_ITENS = 10;
 	private int id;
 	private LocalDateTime dataRealizacao;
@@ -28,27 +30,29 @@ public class Pedido implements Serializable {
 		List<Produto> iniciaItens = new ArrayList<Produto>(10);
 		this.itens = iniciaItens;
 		this.desconto = cliente.getNivelFidelidade().getDesconto();
-		setValorPago();
+		//getValorTotal();
+		//setValorPago();
 	}
 
 	public String gerarNotaDeCompra() {
 		String nota;
-		nota = "CARNE DE CAPIVARA\n" + "Pedido: " + this.id + " Data " + this.dataRealizacao.toString() + "\n"
-				+ "Dados do Cliente\n\n" + "Nome: " + this.cliente.getNome() + "\n" + "CPF: " + this.cliente.getCpf()
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy - HH:mm");
+		nota = "CARNE DE CAPIVARA\n" + "Pedido: " + this.id + " Data " + this.dataRealizacao.format(formatter)
+				+ "\n\nDados do Cliente\n" + "Nome: " + this.cliente.getNome() + "\n" + "CPF: " + this.cliente.getCpf()
 				+ "\n\n" + "ITENS DO PEDIDO\n\n";
-		for (int i = 0; i < itens.size(); i++) {//igual
+		for (int i = 0; i < itens.size(); i++) {// igual
 			nota = nota + i + " " + itens.get(i).getId() + " " + itens.get(i).toString() + " "
 					+ itens.get(i).getPrecoBase() + "\n";
 		}
+		setValorPago();
 		nota = nota + "Valor Total: " + getValorTotal() + "\n" + "Desconto: "
 				+ this.cliente.getNivelFidelidade().getDesconto() * 100 + "%\n" + "Valor Pago: " + getValorPago();
-
 		return nota;
 	}
 
 	private double getValorTotal() {
 		double valor = 0;
-		for (int i = 0; i < itens.size(); i++) {//tirei o igual
+		for (int i = 0; i < itens.size(); i++) {// tirei o igual
 			valor = valor + itens.get(i).getPrecoBase();
 		}
 		return valor;
@@ -112,9 +116,9 @@ public class Pedido implements Serializable {
 	private void setValorPago() {
 		this.valorPago = getValorTotal() * (1 - desconto);
 	}
-	
+
 	public String toString() {
-		return getId()+" "+getDataRealizacao().toString()+" "+cliente.getNome();
+		return getId() + " " + getDataRealizacao().toString() + " " + cliente.getNome();
 	}
 
 }
