@@ -4,7 +4,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class FidelidadeFnV implements IFidelizavel {
-
+	//implementei seriaversion id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final double DESCONTO = 0.2;
 	public static final int MIN_PEDIDOS = FidelidadePreto.MAX_PEDIDOS;
 	public static final int MIN_GASTOS = FidelidadePreto.MAX_GASTOS;
@@ -20,7 +24,7 @@ public class FidelidadeFnV implements IFidelizavel {
 	@Override
 	public IFidelizavel validarFidelidade(List<Pedido> pedidos) {
 		if (this.numPedidosUltimoMes >= MIN_PEDIDOS || this.gastosUltimoMes >= MIN_GASTOS) {
-			return new FidelidadeFnV(pedidos);
+			return this;
 		} else {
 			return new FidelidadePreto(pedidos);
 		}

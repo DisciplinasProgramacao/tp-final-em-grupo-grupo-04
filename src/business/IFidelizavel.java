@@ -1,8 +1,9 @@
 package business;
 
+import java.io.Serializable;
 import java.util.List;
-
-public interface IFidelizavel {
+//herança serializable
+public interface IFidelizavel extends Serializable{
 
 	public IFidelizavel validarFidelidade(List<Pedido> pedidos);
 

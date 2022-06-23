@@ -1,10 +1,15 @@
 package business;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-public abstract class Produto {
+//implementei serializable para o produto
+public abstract class Produto implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double precoBase;
 	private int id;
 	private static int cont = 0;
@@ -36,7 +41,7 @@ public abstract class Produto {
 
 	public Produto() {
 		this.id = ++cont;
-
 	}
+	
 
 }

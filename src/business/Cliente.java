@@ -1,17 +1,23 @@
 package business;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
-
-public class Cliente {
+//implemente serializable para o arquivo
+public class Cliente implements Serializable{
+	//implementei seriaversion id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nome;
 	private String cpf;
 	private IFidelizavel nivelFidelidade;
 	private List<Pedido> pedidos;
 
-	public Cliente(String nome, String cpf) {
+	public Cliente(String nome, String cpf) throws Cpf_Invalido {
 		this.nome = nome;
-		this.cpf = cpf;
+		this.setCpf(cpf);
 		pedidos = new LinkedList<Pedido>();
 		nivelFidelidade = new FidelidadeBranco(pedidos);
 	}
@@ -60,7 +66,7 @@ public class Cliente {
 
 	public void avaliarPedidoPorId(int id, int avaliacao) {
 		if (id==-1) {
-			//colocar exceção
+			//colocar exceÃ§Ã£o
 		}
 		else {
 			this.pedidos.get(id).setAvaliacao(avaliacao);
@@ -81,6 +87,6 @@ public class Cliente {
 	}
 
 	public String extratoDetalhado(int id) {
-		return pedidos.get(id).gerarNotaDeCompra();// aqui é só chamar to string do pedido
+		return pedidos.get(id).gerarNotaDeCompra();// aqui Ã© sÃ³ chamar to string do pedido
 	}
 }

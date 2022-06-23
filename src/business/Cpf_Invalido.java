@@ -9,7 +9,7 @@ public class Cpf_Invalido extends Exception{
 		this.cpf=cpf;
 	}
 	
-	public String getMassege() {
+	public String getMessage() {
 		return ("O CPF " + cpf + " nao pode ser cadastrado. Favor inserir pontos e tracos.");
 		
 	}

@@ -1,12 +1,17 @@
 package business;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+//implementei serializable 
+public class Pedido implements Serializable {
 
-public class Pedido {
-
-//atributos
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//atributos
 	private static final int MAX_ITENS = 10;
 	private int id;
 	private LocalDateTime dataRealizacao;
@@ -31,7 +36,7 @@ public class Pedido {
 		nota = "CARNE DE CAPIVARA\n" + "Pedido: " + this.id + " Data " + this.dataRealizacao.toString() + "\n"
 				+ "Dados do Cliente\n\n" + "Nome: " + this.cliente.getNome() + "\n" + "CPF: " + this.cliente.getCpf()
 				+ "\n\n" + "ITENS DO PEDIDO\n\n";
-		for (int i = 0; i <= itens.size(); i++) {
+		for (int i = 0; i < itens.size(); i++) {//igual
 			nota = nota + i + " " + itens.get(i).getId() + " " + itens.get(i).toString() + " "
 					+ itens.get(i).getPrecoBase() + "\n";
 		}
@@ -43,7 +48,7 @@ public class Pedido {
 
 	private double getValorTotal() {
 		double valor = 0;
-		for (int i = 0; i <= itens.size(); i++) {
+		for (int i = 0; i < itens.size(); i++) {//tirei o igual
 			valor = valor + itens.get(i).getPrecoBase();
 		}
 		return valor;

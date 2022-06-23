@@ -2,6 +2,10 @@ package business;
 
 public class Pizza extends Comida implements IAdicionavel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final double VALOR_PRECO_BASE_PIZZA = 25;
 	private static final double VALOR_BORDA_RECHEADA = 8;
 	private boolean borda;

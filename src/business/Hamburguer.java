@@ -2,6 +2,10 @@ package business;
 
 public class Hamburguer extends Comida implements IAdicionavel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final double PRECO_BASE_HAMBURGUER = 12;
 	private boolean paoArtesanal;
 	private static final double PRECO_DO_PAO_ARTESANAL = 2;
@@ -38,7 +42,13 @@ public class Hamburguer extends Comida implements IAdicionavel {
 
 	@Override
 	public String toString() {
-		return "(" + this.getId() + ")" + "Hamburguer " + this.getExtrato();
+		if (this.paoArtesanal)
+		{
+			return "(" + this.getId() + ")" + "Hamburguer com pao de capivara(artesanal) " + this.getExtrato();
+		}
+		else {
+			return "(" + this.getId() + ")" + "Hamburguer " + this.getExtrato();
+		}
 	}
 
 }
